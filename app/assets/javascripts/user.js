@@ -28,6 +28,8 @@
 //= require calendar-2/pignose.calendar.min.js
 //= require owl-carousel/owl.carousel.min.js
 //= require owl-carousel/owl.carousel-init.js
+//= require dropzone/dropzone.js
+
 //= require custom.min.js
 //= require rails-ujs
 //= require turbolinks

@@ -25,6 +25,7 @@ class OrphansController < ApplicationController
   # POST /orphans
   # POST /orphans.json
   def create
+    binding.pry
     @orphan = Orphan.new(orphan_params)
 
     respond_to do |format|
