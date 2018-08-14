@@ -1,8 +1,7 @@
 class CreateMissings < ActiveRecord::Migration[5.1]
   def change
     create_table :missings do |t|
-      t.references :user, foreign_key: true
-      t.string :image
+      t.references :profile, foreign_key: true
       t.string :name
       t.string :age
       t.string :height

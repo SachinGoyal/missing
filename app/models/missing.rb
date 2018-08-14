@@ -3,8 +3,7 @@
 # Table name: missings
 #
 #  id           :integer          not null, primary key
-#  user_id      :integer
-#  image        :string
+#  profile_id   :integer
 #  name         :string
 #  age          :string
 #  height       :string
@@ -17,5 +16,6 @@
 #
 
 class Missing < ApplicationRecord
-  belongs_to :user
+  belongs_to :profile
+  has_many :pictures, as: :imageable
 end

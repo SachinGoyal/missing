@@ -4,6 +4,9 @@
 #
 #  id                     :integer          not null, primary key
 #  email                  :string           default(""), not null
+#  contact                :string
+#  name                   :string
+#  active                 :boolean          default(TRUE)
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
@@ -23,6 +26,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
   has_one :profile
+
+  after_create :create_profile
+
+
+
+
+
+  private
+
+  def create_profile
+    build_profile.save
+  end
 end

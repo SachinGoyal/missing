@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180813090334) do
+ActiveRecord::Schema.define(version: 20180814104500) do
+
+  create_table "blogs", force: :cascade do |t|
+    t.integer "profile_id"
+    t.string "tittle"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_blogs_on_profile_id"
+  end
 
   create_table "missings", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "image"
+    t.integer "profile_id"
     t.string "name"
     t.string "age"
     t.string "height"
@@ -24,28 +32,36 @@ ActiveRecord::Schema.define(version: 20180813090334) do
     t.boolean "active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_missings_on_user_id"
+    t.index ["profile_id"], name: "index_missings_on_profile_id"
   end
 
   create_table "orphans", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "image"
+    t.integer "profile_id"
     t.string "video"
     t.string "description"
-    t.string "lat"
-    t.string "long"
+    t.string "latitude"
+    t.string "longitude"
     t.string "address"
+    t.string "pincode"
     t.boolean "active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_orphans_on_user_id"
+    t.index ["profile_id"], name: "index_orphans_on_profile_id"
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string "imageable_type"
+    t.integer "imageable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profiles", force: :cascade do |t|
     t.integer "user_id"
-    t.string "name"
-    t.string "contact"
+    t.string "age"
+    t.string "gender"
     t.string "address"
+    t.boolean "share_detail", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -53,6 +69,9 @@ ActiveRecord::Schema.define(version: 20180813090334) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
+    t.string "contact"
+    t.string "name"
+    t.boolean "active", default: true
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
